@@ -1,0 +1,14 @@
+<template>
+    <div if:true={data}>
+        <template if:true={data} for:each={data} for:item="poc" for:index="index">
+            <div key={data.Id}>
+                <lightning-card  title="Order Detail">
+                    <p class="slds-p-horizontal_small">{data.Id}</p>
+                   <p class="slds-p-horizontal_small">Card Body (custom component)</p>
+                </lightning-card>
+            </div>
+        </template>
+       
+        
+    </div>
+</template>

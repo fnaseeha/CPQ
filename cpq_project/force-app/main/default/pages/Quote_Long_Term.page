@@ -1,0 +1,1231 @@
+<apex:page renderAs="pdf" standardController="SBQQ__Quote__c" extensions="QuoteController" applyBodyTag="false">
+    <head>
+        <style type="text/css" media="print">
+            
+            @page {
+            size: A4 portrait; 
+            @top-center {
+            content: element(header);
+            }
+            }
+            
+            @page {
+            @bottom-left {
+            content: element(footer);
+            }
+            }
+            
+            * {
+            margin: 0px;
+            padding: 0px;
+            }
+            
+            div.header {
+            background: '';
+            margin-top: 30px;
+            height: 130px;
+            width: 715px;
+            text-align: center;
+            position: running(header);
+            font-family: sans-serif;
+            font-size: 20px;
+            color: gray;
+            }
+            
+            div.content {
+            max-height: 800px;
+            font-family: sans-serif;  
+            }
+            
+            div.footer {
+            display: block;
+            position: running(footer);
+            font-family: sans-serif;
+            font-size: 10px;
+            }
+            
+            footer.page:last {
+            content: text;
+       		}
+
+            
+            div.subfooter {
+            display: inline-block;
+            }
+            
+            div.right {
+            float: right;
+            }
+            
+            .pagenumber:before {
+            content: counter(page);
+            }
+            
+            .pagecount:before {
+            content: counter(pages);
+            }
+            
+            .headerLeftSide {
+            width: 72%;
+            border: 0px outset red;
+            float: left;
+            min-height: 1000px;
+            }
+            
+            .headerRightSide {
+            width: 28%;
+            border: 0px outset red;
+            float: left;
+            min-height: 1000px;
+            text-align: left;
+            
+            }
+            
+            .headerLine {
+            width : 95%;
+            color : Gray;
+            margin-left: 10px;
+            }
+            
+            .footerLeftSide {
+            width: 10%;
+            float: left;
+            border: 0px outset red;
+            min-height: 1000px;
+            }
+            
+            .footerRightSide {
+            width: 20%;
+            border: 0px outset red;
+            float: left;
+            min-height: 1000px;
+            text-align: right;
+            }
+            
+            .footerCenter {
+            width: 68%;
+            border: 0px outset red;
+            float: left;
+            min-height: 1000px;
+            }
+            
+            .topPadding {
+            padding-top: 14px;
+            font-size: 10px !important;
+            }
+            
+            .footerLine {
+            width : 90%;
+            color : Gray;
+            margin-left: 69px;
+            }
+            
+            .divTest {
+            border: 1px outset red;
+            width: 100%;
+            }
+            
+            .page1 {
+            text-align: center;
+            }
+            
+            .headerImage1 {
+            min-height: 100px;
+            }
+            
+            .headerImage2 {
+            min-height: 100px;
+            }
+            
+            .page1Content {
+            min-height: 100px;
+            }
+            
+            h1 {
+            font-family: sans-serif;
+            font-size: 35px;
+            font-weight: 300px;
+            }
+            
+            h4 {
+            font-size: 15px;
+            font-weight: 200px;
+            }
+            
+            h2{
+            font-size: 20px;
+            }
+            h3{
+            font-size: 16px;
+            }
+            
+            p {
+            font-size: 15px;
+            }
+            
+            .removeLink{
+            color: black;
+            text-decoration: none; /* no underline */
+            }
+            .alignleft {
+            float: left;
+            padding-top:3px;
+            }
+            .alignright {
+            float: right;
+            padding-top:3px;
+            }
+            .contentBreak {
+            padding-top:5px;
+            }
+            .subParagraph{
+            font-weight: normal;
+            font-size:12px;
+            padding-bottom:10px;
+            }
+            .tab{
+            padding-left:60px;
+            }
+            .removeTab{
+            padding-left:-60px;
+            }   
+            .space{
+            padding-left:16px;
+            }
+            .tabWithSpace{
+            padding-left:76px;
+            }
+            .subHeading{
+            padding-left:60px;
+            padding-bottom:5px;
+            }
+            
+            #Table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            font-size:12px;
+            padding-top:10px;
+            margin-bottom:10px;
+            font-weight:900;
+            }
+            
+            #Table td{
+            border: 0.1px solid #abc4fe;
+            padding-right:20px;
+            padding-left:10px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            background-color: #abc4fe;
+            }
+            #Table td.border{
+             border: 1px solid #749cfc;
+             background-color: #abc4fe;
+            }
+            #Table tr.border{
+              border: 1px solid #749cfc;
+              background-color: #abc4fe;
+            }
+            #Table td.shrink {
+            white-space:nowrap
+            }
+            #Table td.blueOutlineTable{
+                border: 1px solid #749cfc;
+                background-color: white;
+            	text-alignment:center;
+            }
+            #Table td.grayTable{
+                 border: 1px solid #a39e9e;
+                background-color: #e5e3e3;
+            	text-alignment:center;
+            }
+            
+            #Table td.expand {
+            width: 99%
+            }
+            
+            .centered{
+                 vertical-align:middle;
+                 text-align:center;
+            }
+            .blueBorder{
+                background-color:  #abc4fe;
+                border: 1px solid #749cfc;
+                font-size:12px;
+            }
+           
+        </style>
+    </head>
+    <div class="header">
+        <div style="padding-bottom: 20px;">
+            <div class="headerLeftSide"></div>
+            <div class="headerRightSide">
+                <p> - Commercial in Confidence</p>
+            </div> 
+        </div>
+        <div>
+            <hr class="headerLine" />
+        </div>
+    </div>
+    
+    <apex:pageBlock >
+        <apex:pageBlockSection columns="1">
+            <div class="content">
+                <!--PAGE1-->
+                <div class="page1">
+                    <div style="min-height: 300px">
+                        <img style="height: 220px; width: 710px;" src="/resource/QuotePDFImages/HeaderImage2.PNG" />
+                    </div>
+                    <div>
+                        <div style="min-height: 100px">
+                            <h1>Commercial Proposal</h1>
+                        </div>
+                        <div style="min-height: 100px">
+                            <h4>{!SBQQ__Quote__c.SBQQ__Account__r.Name}</h4>
+                            <h4>Project Name</h4>
+                            <h4>Full Product Name</h4>
+                        </div>
+                        <div style="min-height: 100px; page-break-after:always;">
+                            <h4>Date: &nbsp; {!TODAY()}</h4>
+                            <h4>Version: &nbsp; incremental Number</h4>
+                            <h4>Full Product Name</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--PAGE2-->
+                <div style="padding: 50px;">
+                    <div style="text-align: left; padding-top: 20px; padding-left: 400px;">
+                        <p>{!SBQQ__Quote__c.SBQQ__Account__r.Name}</p>
+                        <p>{!SBQQ__Quote__c.Sold_To_Street__c},</p>
+                        <p>{!SBQQ__Quote__c.Sold_To_Postal_Code__c} &nbsp; {!SBQQ__Quote__c.Sold_To_City__c},</p>
+                        <p>{!SBQQ__Quote__c.Sold_To_Country__c}</p>
+                        <p>Attention of &nbsp;{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Title}.&nbsp;{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Name}</p>
+                    </div>
+                    <div style="text-align: left;">
+                        <p><u>Subject</u> : Proposal for </p>
+                        <p><u>Our reference</u> :  </p>
+                        <p><u>Your reference</u> :  </p><br/>
+                        <p>Dear &nbsp;{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Title}.&nbsp;{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Name},</p><br/>
+                        <p>Thank you for considering the ScioTeq products for your project investigations /  for enquiry number ...... regarding the ...... Project</p><br/>
+                        <p>In response to your enquiry and based on your information we are pleased to propose our …</p><br/>
+                        <p>We are delighted to herewith submit our proposal for the ….. 
+                            This quotation reflects a generic product, without options. Based on this we can further discuss
+                            your particular requests and possible options or alternatives.
+                        </p><br/>
+                        <p>We are convinced that ScioTeq has the technical expertise, the people, the production
+                            capabilities and the customer service infrastructure to deliver a product that will meet your
+                            expectations as well as support {!SBQQ__Quote__c.SBQQ__Account__r.Name} throughout the different phases of the program
+                        </p><br/>
+                        <p>We value our long-term relationship, and we are looking forward for a further successful
+                            cooperation’s in this and other future programs.
+                        </p><br/>
+                        <p>I trust that this proposal meets your expectations, but please do not hesitate to contact me in
+                            case of any questions and/or comments you might have.
+                            
+                        </p><br/>
+                        <p>Yours sincerely,</p><br/><br/><br/><br/>
+                    </div>
+                    <div style="text-align: left; page-break-after:always;">
+                        <p>{!SBQQ__Quote__c.SBQQ__SalesRep__r.Name}</p><br/>
+                        <p style="color: #154cff;"><b>Scio Teq BV</b></p>
+                        <p>President Kennedypark 35A</p>
+                        <p>8500 Kortrijk, Belgium</p><br/>
+                        <p>E-mail: {!SBQQ__Quote__c.SBQQ__SalesRep__r.Email}</p>
+                        <p>Tel: {!SBQQ__Quote__c.SBQQ__SalesRep__r.Phone}</p>
+                        <p>Mobile: {!SBQQ__Quote__c.SBQQ__SalesRep__r.MobilePhone}</p>
+                    </div>
+                </div>
+                <!--PAGE3-->
+                <div style="padding: 50px;padding-top:10px">
+                    <h2 style="padding-bottom: 10px;color: blue">
+                        TABLE OF CONTENTS
+                    </h2>
+                    <div>
+                        <p class="alignleft"><a href="#Introduction" class="removeLink">1. Introduction</a></p>
+                        <p class="alignright"><a href="#Introduction" class="removeLink">4</a></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Introduction_Sub_Point_1" class="removeLink">1.1  Definitions, Abbreviations &amp; Interpretations</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Introduction_Sub_Point_2" class="removeLink">1.2 Applicable Documents</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Introduction_Sub_Point_3" class="removeLink">1.3 Revision History</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#General" class="removeLink">2. General</a></p>
+                        <p class="alignright"><a href="#General" class="removeLink">5</a></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#General_Sub_Point_1" class="removeLink">2.1 Conforming to your environment</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#General_Sub_Point_2" class="removeLink">2.2 Qualification, testing and flexible manufacturing</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#General_Sub_Point_3" class="removeLink">2.3 Integrated Logistics Support</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#Technical_Specifications" class="removeLink">3. Technical Specifications</a></p>
+                        <p class="alignright"><a href="#Technical_Specifications" class="removeLink">6</a></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#Quotation" class="removeLink">4. Quotation</a></p>
+                        <p class="alignright"><a href="#Quotation" class="removeLink">6</a></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Quotation_Sub_Point_1" class="removeLink">4.1 Pricing</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Quotation_Sub_Point_2" class="removeLink">4.2 Validity</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Quotation_Sub_Point_3" class="removeLink">4.3 Price escalation clause</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#Sales_Conditions" class="removeLink">5. Sales Conditions</a></p>
+                        <p class="alignright"><a href="#Sales_Conditions" class="removeLink">7</a></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Sales_Conditions_Sub_Point_1" class="removeLink">5.1 General Terms and Conditions of Sale</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Sales_Conditions_Sub_Point_2" class="removeLink">5.2 Delivery Terms</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Sales_Conditions_Sub_Point_3" class="removeLink">5.3 Delivery Schedule</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Sales_Conditions_Sub_Point_4" class="removeLink">5.4 Warranty</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Sales_Conditions_Sub_Point_5" class="removeLink">5.5 Payment Terms</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Sales_Conditions_Sub_Point_6" class="removeLink">5.6 Export License</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Sales_Conditions_Sub_Point_7" class="removeLink">5.7 Compliance</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#Services_and_areas" class="removeLink">6. Services and areas of expertise</a></p>
+                        <p class="alignright"><a href="#Services_and_areas" class="removeLink">9</a></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Services_and_areas_Sub_Point_1" class="removeLink">6.1 Project Management Office</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Services_and_areas_Sub_Point_2" class="removeLink">6.2 Technical Pre-sales</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Services_and_areas_Sub_Point_3" class="removeLink">6.3 Training Services</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Services_and_areas_Sub_Point_4" class="removeLink">6.4 Integration / Implementation services</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#Services_and_areas_Sub_Point_5" class="removeLink">6.5 Technical Support</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#Factory_Acceptance" class="removeLink">7. Factory Acceptance Test</a></p>
+                        <p class="alignright"><a href="#Factory_Acceptance" class="removeLink">9</a></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#Services_Documentation" class="removeLink">8. Service Documentation</a></p>
+                        <p class="alignright"><a href="#Services_Documentation" class="removeLink">10</a></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="contentBreak">
+                        <p class="alignleft"><a href="#ContactDetail" class="removeLink">9. Contact Details</a></p>
+                        <p class="alignright"><a href="#ContactDetail" class="removeLink">10</a></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#ContactDetail_Sub_Point_1" class="removeLink">9.1 Commercial Contacts</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#ContactDetail_Sub_Point_2" class="removeLink">9.2 Technical Contacts</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                    </div>
+                    
+                    <div class="contentBreak" style="page-break-after:always;">
+                        <p class="alignleft"><a href="#ReceiptOf_Order" class="removeLink">10. Receipt of Order</a></p>
+                        <p class="alignright"><a href="#ReceiptOf_Order" class="removeLink">10</a></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#ReceiptOf_Order_Sub_Point_1" class="removeLink">10.1 Order Address</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                        <p class="alignleft"><a href="#ReceiptOf_Order_Sub_Point_2" class="removeLink">10.2 Acceptance of Order</a></p>
+                        <p class="alignright"></p>
+                        <div style="clear: both;"></div>
+                        
+                    </div>
+                </div>
+                <!--PAGE4-->
+                <div style="padding: 50px;padding-top:10px">
+                    <h2 style="padding-bottom: 10px;" id="Introduction">
+                        1. Introduction
+                    </h2>
+                    <div>
+                        <h3 class="subHeading" id="Introduction_Sub_Point_1">
+                            1.1<span class="tab">Definitions, Abbreviations &amp; Interpretations</span>
+                        </h3>
+                        <table id="Table">
+                            <tr>
+                                <td class="shrink">AD</td>
+                                <td class="expand">Application document</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">BFE</td>
+                                <td class="expand">Buyer Furnished Equipment</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">BIT</td>
+                                <td class="expand">Built-In Test</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">BOM</td>
+                                <td class="expand">Bill Of Material</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">COTS</td>
+                                <td class="expand">Commercial Of The Shelve</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">CPU</td>
+                                <td class="expand">Central Processing Unit</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">ECA</td>
+                                <td class="expand">Environmental Conditioning Available</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">FIO</td>
+                                <td class="expand">For Information Only</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">GUI</td>
+                                <td class="expand">Graphical User Interface</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">HD</td>
+                                <td class="expand">Commercial Of The Shelve</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">HMI</td>
+                                <td class="expand">Hard Disk</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">HW</td>
+                                <td class="expand">Hardware</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">I/F</td>
+                                <td class="expand">Interface</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">ICD</td>
+                                <td class="expand">Installation Control Document</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">IO</td>
+                                <td class="expand">Input/Output</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">KB</td>
+                                <td class="expand">Keyboard</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">LRU</td>
+                                <td class="expand">Line Replacement Unit</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">NA</td>
+                                <td class="expand">Not Applicable</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">OEM</td>
+                                <td class="expand">Original Equipment Manufacturer</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">PCI</td>
+                                <td class="expand">Peripheral Component Interconnect</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">PVS</td>
+                                <td class="expand">PCI Graphics Generator</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">PS</td>
+                                <td class="expand">Power Supply</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">RD</td>
+                                <td class="expand">Reference Document</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">RGB</td>
+                                <td class="expand">Red - Green – Blue</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">S/W</td>
+                                <td class="expand">Software</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">SRU</td>
+                                <td class="expand">Shop replacement Unit</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">SW</td>
+                                <td class="expand">Software</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">TBC</td>
+                                <td class="expand">To Be Confirmed</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">TBD</td>
+                                <td class="expand">To Be Defined</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">TCU</td>
+                                <td class="expand">Thermal Control Unit</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">TD</td>
+                                <td class="expand">Top-down</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">TID</td>
+                                <td class="expand">Touch Input Device</td>
+                            </tr>
+                        </table>
+                        <h3 class="subHeading" id="Introduction_Sub_Point_2">
+                            1.2<span class="tab">Applicable Documents</span>
+                        </h3>
+                        <p class="subParagraph">
+                            The following lists the documents which contain sections that are pertinent to this proposal.
+                            There is no intent here to imply that all parts of the referenced documents are relevant and 
+                            should be adhered to unless specifically referenced to within this proposal.
+                        </p>
+                        <table id="Table">
+                            <tr>
+                                <td class="shrink">Document</td>
+                                <td class="expand">Document Name</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">AD1</td>
+                                <td class="expand">20200101_ScioTeq_Terms&amp;Conditions_of_sale</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">AD2</td>
+                                <td class="expand">&lt;text field, i.e. Technical Spec.pdf &gt;</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">AD3</td>
+                                <td class="expand">&lt;text field, i.e. Product Definition Checklist &gt;</td>
+                            </tr>
+                        </table>
+                        <h3 class="subHeading" id="Introduction_Sub_Point_3">
+                            1.3<span class="tab">Revision History</span>
+                        </h3>
+                        <table id="Table" style="page-break-after:always;">
+                            <tr>
+                                <td class="shrink">Version</td>
+                                <td class="expand">Revision</td>
+                                <td class="shrink">Date</td>
+                                <td class="shrink">By</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">01</td>
+                                <td class="expand">Initial Proposal </td>
+                                <td class="shrink">dd.mm.yy</td>
+                                <td class="shrink">owner</td>
+                            </tr>
+                            <tr>
+                                <td class="shrink">02</td>
+                                <td class="expand">&lt;text filed, i.e. revised pricing, revised delivery, revised quantities, ….. &gt;</td>
+                                <td class="shrink">dd.mm.yy</td>
+                                <td class="shrink">owner</td>
+                                
+                            </tr>
+                            <tr>
+                                <td class="shrink">03</td>
+                                <td class="expand">&lt;text field: i.e. revised pricing, revised delivery, revised quantities, ….. &gt;</td>
+                                <td class="shrink"></td>
+                                <td class="shrink"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <!--PAGE 5-->
+                <div style="padding: 50px;padding-top:10px">
+                    <h2 style="padding-bottom: 10px;" id="General">
+                        2. General
+                    </h2>
+                    <div>
+                        <h3 class="subHeading" id="General_Sub_Point_1">
+                            2.1<span class="tab">Conforming to your environment</span>
+                        </h3>
+                        <p class="subParagraph">
+                            ScioTeq is a leading manufacturer and supplier of state-of-the-art visualization solutions 
+                            to the international defense and aerospace markets. Building upon its vertical market and product 
+                            lines, system knowledge, integration experience and qualified resources, the company integrates its 
+                            rugged key components into advanced visualization solutions, tailored to specific needs. ScioTeq shares
+                            your strategic view, understands the technical risks and manages the complete lifecycle from concept and
+                            design to manufacturing and lifetime support, which translates into reduced technical risk and lower system
+                            cost for integrators.
+                        </p>
+                        <h3 class="subHeading" id="General_Sub_Point_2">
+                            2.2<span class="tab">Qualification, testing and flexible manufacturing</span>
+                        </h3>
+                        <p class="subParagraph">
+                            To provide state-of-the-art systems, ScioTeq manufactures in accordance with ISO9001:2015 certifications, and 
+                            the ANSI/IPC-A-610A (level II &amp; III) workmanship standard for the Defense product range and in accordance 
+                            with ISO9104A and EASA Part21 Production Organization Approval for the AVIONICS product range. Configuration 
+                            control, extensive environmental and lifetime testing programs, stringent design rules and a fully controlled 
+                            production process, further ensure this commitment to product quality.In-house facilities for extensive 
+                            environmental and reliability testing include climate rooms, vibration tables, burn-in-rooms and EMC test chambers.
+                            In addition, Highly Accelerated Lifetime Testing (HALT) is used to study the behavior, increase lifetime and improve
+                            reliability.
+                        </p>
+                        <h3 class="subHeading" id="General_Sub_Point_3">
+                            2.3<span class="tab">Integrated Logistics Support</span>
+                        </h3>
+                        <p class="subParagraph" style="page-break-after:always;">
+                            To ensure maximum reliability and availability of its systems, ScioTeq has established a worldwide network of logistics
+                            support, with regional support people that understand the local language and requirements. Highly qualified customer
+                            support engineers are the customer guarantee for quick repair, long-term availability of spare parts and redesign for
+                            obsolete components. In addition, ScioTeq provides technical documentation, professional training, consultancy and 
+                            engineering services.Industrial and defense programs typically have long lifetimes.  ScioTeq guarantees successful 
+                            performance and maintenance of systems during this operational period. To ensure cost competitive, customer compliant
+                            solutions that can be supported over the entire product lifetime, long-term relationships with suppliers and 
+                            subcontractors have been established.Obsolescence management is a key issue during product design. ScioTeq thoroughly
+                            examines the reliability, availability and maintainability of the components used. Adequate stock is kept of critical
+                            components and whenever possible products are upgraded with latest technology innovations without compromising their 
+                            form-fit-function compatibility.To limit lifecycle cost, ScioTeq works with customers to define a long-term support 
+                            strategy, incorporating the obsolescence management as defined in the program. We assist in defining spare parts 
+                            provisional and periodic maintenance. Services also include detailed technical and operational documentation, dedicated
+                            training programs and other support services. More-over in-house customer centers in U.S., India, Singapore, France, 
+                            and Belgium offer localized repair and support services. To ensure an economical product lifecycle and adequate 
+                            performance, ScioTeq’s technical researchers and support staff assist in redesigning components by the time that the 
+                            cost of keeping inventory of current configurations is becoming disproportionally high compared to configuration value.
+                            
+                        </p>
+                    </div>
+                </div>
+                
+                <!--PAGE 6-->
+                <div style="padding: 50px;padding-top:10px;padding-bottom:10px">
+                    <h2 style="padding-bottom: 10px;" id="Technical_Specifications">
+                        3. Technical Specifications
+                    </h2>
+                    <p class="subParagraph">
+                        &lt;text field, i.e. See AD2 document "Technical Spec.pdf", transmitted as e-mail attachment along with this proposal.]&gt;
+                    </p>
+                </div>
+                <!--PAGE 7-->
+                <div style="padding: 50px;padding-top:10px;padding-bottom:10px">
+                    <h2 style="padding-bottom: 10px;" id="Quotation">
+                        4. Quotation
+                    </h2>
+                    <div class="tab">
+                        <h3  id="Quotation_Sub_Point_1" style="padding-bottom:15px;">
+                            4.1<span class="tab">Pricing</span>
+                        </h3>
+                        <p class="subParagraph" style="padding-bottom:15px;">
+                            CRM Worksheet Reference: {!SBQQ__Quote__c.Name}<br/>
+                            Currency: EUR
+                        </p>
+                      
+                        
+                        <table  style="background-color: #749cfc;">
+                            
+                            <tr>
+                                <td class="shrink blueBorder centered" >Incremental number</td>
+                                <td class="expand blueBorder centered">Description</td>
+                                <td class="shrink blueBorder centered">Part Number</td>
+                                <td class="shrink blueBorder centered">Quantity</td>
+                                <td class="shrink blueBorder centered">Net Total</td>
+                            </tr>
+                            
+                            <apex:repeat value="{!QuoteLines}" var="quteLine">
+                                <tr >
+                                    <td class="shrink blueBorder centered">{!quteLine.SBQQ__Number__c}</td>
+                                    <td class="expand blueBorder">{!quteLine.SBQQ__Description__c}</td>
+                                    <td class="shrink blueBorder">{!quteLine.Part_Number__c}</td>
+                                    <td class="shrink blueBorder">{!quteLine.SBQQ__Quantity__c}</td>
+                                    <td class="shrink blueBorder">{!quteLine.SBQQ__NetTotal__c}</td> 
+                                </tr>
+                            </apex:repeat>
+                        </table>
+                        
+                    </div>
+                    <p style="padding-bottom:20px;page-break-after:always;" class="subParagraph">
+                        <strong class="tab">Important notes:</strong><br/>
+                        <span class="tab"> &lt;text field, i.e. based upon one single purchase order; 
+                            additional documents which will be provided are…&gt;</span>
+                    </p>
+                    
+                    <h3 id="Quotation_Sub_Point_2" style="padding-bottom:15px;padding-top:5px" class="subHeading">
+                        4.2<span class="tab">Validity</span>
+                    </h3>
+                    
+                    <p class="subParagraph">This proposal is valid until {!SBQQ__Quote__c.Valid_Until__c}</p>
+                    <p style="padding-top:10px" class="subParagraph">Prices mentioned in this proposal are valid for deliveries and milestones within 12 months from the date
+                        of the quotation. Pricing will automatically increase as per the price escalation clause under 4.3 on each
+                        anniversary date of the proposal and remain valid for deliveries or milestones within 12 months after this
+                        anniversary date.</p>
+                    <p style="padding-top:10px" class="subParagraph">Prices are no longer valid after the expiration of the proposal.</p>
+                    
+                    <h3 id="Quotation_Sub_Point_3" style="padding-top:15px;" class="subHeading">
+                        4.3<span class="tab">Price escalation clause</span>
+                    </h3>
+                    
+                    <p class="subParagraph">The annual contractual price escalation is 3% fixed or the result of the 
+                        following price escalation formula, whichever is the greater:</p>
+                    
+                    <div class="tab" >
+                        <img style="height: 270px;" src="/resource/QuotePDFImages/Equation.PNG" />
+                        <p class="subParagraph">Applicable indices are:</p>
+                        <p class="subParagraph"> L - the StatBel Labour Index</p>
+                        <div class="space" >
+                            <p class="subParagraph">
+                                <a href="https://statbel.fgov.be/en/themes/indicators/labour/labour-cost-index#figures (StatBel)">
+                                https://statbel.fgov.be/en/themes/indicators/labour/labour-cost-index#figures (StatBel)</a>
+                            </p>
+                            <p class="subParagraph">Publicly accessible - Quarterly updated – Select Manufacturing (C) </p>
+                        </div>
+                         <!--PAGE 7-->
+                
+                        <p class="subParagraph" style="padding-top:10px"> M - the StatBel Material Cost Index – Producer Price Index (Industry – Total Market)</p>
+                        <div class="space">
+                            <p class="subParagraph"><a href="https://statbel.fgov.be/nl/themas/conjunctuurindicatoren/prijzen/afzetprijsindexen-industrie#panel-11">
+                                https://statbel.fgov.be/nl/themas/conjunctuurindicatoren/prijzen/afzetprijsindexen-industrie#panel-11</a>
+                            </p>
+                            <p class="subParagraph">Select: Manufacture of electrical machinery and apparatus of radio, television and communication equipment (261-264 + 27)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="padding: 50px;padding-top:10px;padding-bottom:10px" >
+                    <h2 style="padding-bottom: 10px;" id="Sales_Conditions">
+                        5. Sales Conditions
+                    </h2>
+                     <h3 id="Sales_Conditions_Sub_Point_1" style="padding-top:15px;" class="subHeading">
+                        5.1<span class="tab">General Terms and Conditions of Sale</span>
+                    </h3>
+                    <p class="subParagraph">Unless other conditions are agreed upon, ScioTeq General Terms and Conditions of Sale apply (See AD1).</p>
+                    
+                    <h3 id="Sales_Conditions_Sub_Point_2" style="padding-top:15px;" class="subHeading">
+                        5.2<span class="tab">Delivery Terms</span>
+                    </h3>
+                    <p class="subParagraph">According to the Incoterms I.C.C. - rev. 2010, {SBQQ__Quote__c.Inco_Terms__c}</p>
+                    
+                    <h3 id="Sales_Conditions_Sub_Point_3" style="padding-top:15px;" class="subHeading">
+                        5.3<span class="tab">Delivery Schedule</span>
+                    </h3>
+                    <p class="subParagraph">The standard lead-time for the proposed product(s) is {SBQQ__Quote__c.Lead_Time__c} weeks after 
+                        receipt of order (ARO) without any advanced customer indication of required delivery schedule. Pre-emptive 
+                        forecasting and/or contractual agreement can reduce the lead-time.</p>
+                    
+
+                    <div style="text-align: justify;background-color: #BFBFBD;margin-bottom:-5px">
+                        <span class="subParagraph">
+                            In light of measures taken worldwide to curb the spreading of the coronavirus, and in spite of risk mitigation 
+                            actions taken by ScioTeq, ScioTeq cannot exclude that supply chain and operational consequences of said measures
+                            will not impact its standard lead times. As such, any provided lead-time is to be understood as indicative unless
+                            otherwise 
+                        </span>
+                    </div>
+                    <span class="subParagraph" style="background-color: #BFBFBD;">stated.</span>
+                    
+                     <h3 id="Sales_Conditions_Sub_Point_4" style="padding-top:15px;" class="subHeading">
+                        5.4<span class="tab">Warranty</span>
+                    </h3>
+                    <p class="subParagraph">See AD1: 20200101_ScioTeq_Terms&amp;Conditions_of_sale.</p>
+                    
+                     <p class="subParagraph" style="padding-top:10px">A {SBQQ__Quote__c.Warranty_Period__c} months factory warranty period is included. 
+                         Other service support such as "extended warranty" is optional and can be quoted upon request.</p>
+                    
+                    <p class="subParagraph" style="padding-top:10px">During this period, ScioTeq will perform all repairs free of charge (material and labor).
+                        The faulty parts or units are to be shipped freight prepaid to a ScioTeq regional service center. Freight charges when the 
+                        repaired parts are returned back to the customer's site are at ScioTeq charge. Damage of equipment due 
+                        to improper use is not covered by this warranty</p>
+                    
+                    <p class="subParagraph" style="padding-top:10px">
+                        All products returned for warranty repair must be in the original shipping container and packed properly using the packing 
+                        material provided unless permission has been granted in writing by ScioTeq Customer Service for other methods. Failure to do 
+                        so may void the product warranty.
+                    </p>
+                    
+                    <p class="subParagraph" style="padding-top:10px">
+                        The fee for extended warranty service will be based upon the age of the unit, measured from the date of 
+                        shipment, and is determined by applying the following percentages on the product sales price, subject to 
+                        ScioTeq’s price escalation clause.
+                    </p>
+                    <p class="subParagraph" style="padding-top:10px"><strong>SCHEDULE OF PRICING FOR WARRANTY EXTENSION</strong></p>
+                    <div class="tab">
+                        
+                        <table id="Table" >
+                            <tr>
+                                <td class="grayTable">Period in months</td>
+                                <td class="centered grayTable">0 – 12</td>
+                                <td class="centered grayTable">13 – 24</td>
+                                <td class="centered grayTable"> 25 - 36</td>
+                                <td class="centered grayTable">+36 </td>
+                            </tr>
+                            <tr>
+                                <td class="grayTable">One-time fee</td>
+                                <td class="centered grayTable">0% </td>
+                                <td class="centered grayTable">+3% </td>
+                                <td class="centered grayTable">+5% </td>
+                                <td class="grayTable">ILS Contract</td>
+                            </tr>
+                        </table>
+                        <h3 id="Sales_Conditions_Sub_Point_5" style="padding-top:15px;" class="subHeading">
+                            5.5<span class="tab">Payment Terms</span>
+                        </h3>
+                    </div>
+                     <p class="subParagraph" style="padding-top:10px">{!SBQQ__Quote__c.SBQQ__PaymentTerms__c}</p>
+                     <p class="subParagraph" style="padding-top:10px">By means of an irrevocable letter of credit. 
+                         All costs of the letter of credit are on charge of the customer).The letter of credit must allow partial shipments and trans shipments.
+					</p>
+                     <p class="subParagraph" style="padding-top:10px;">Advance payment of 30% to be invoiced byScioTeq to the customer
+                         when the contract or order is placed.70% payable 30 days after invoice date.</p>
+                </div>
+                <!--PAGE 8-->
+                 <div style="padding: 50px;padding-top:10px;padding-bottom:10px" >
+                    
+                     <h3 id="Sales_Conditions_Sub_Point_6" class="subHeading">
+                        5.6<span class="tab">Export License</span>
+                    </h3>
+                    <p class="subParagraph">End user screening is conducted by ScioTeq to verify the ultimate use of the item, technology, technical
+                                data, or software by the customer, rather than on the characteristics of the equipment or technology
+                                being exported. An End User Statement (EUS) is required to determine if a government authorization is
+                                required for the end user, end use or end destination, and to lower the risk of diversion. An End User
+                                Statement (EUS) or assurances are obtained by ScioTeq as a risk mitigation tool.
+                     </p>
+                     <p class="subParagraph" style="padding-top:10px">In case Customer cannot supply adequate documentation in order to allow ScioTeq to apply for
+                            necessary export licenses, ScioTeq will not be liable for any damages or consequential damages due to
+                            the fact that ScioTeq cannot ship the products</p>
+                     
+                      <h3 id="Sales_Conditions_Sub_Point_7" style="padding-top:15px;" class="subHeading">
+                        5.7<span class="tab">Compliance</span>
+                    </h3>
+                     <p class="subParagraph" style="page-break-after:always;">Customer shall comply with all applicable laws and regulations including export laws and regulations. In
+                        particular, Customer shall not engage, actively or passively, directly or indirectly, in any form of bribery,
+                        money laundering, in any violation of basic human rights of employees or any child labour. Customer
+                        shall take responsibility for the health and safety of its employees, and shall act in accordance with
+                        ScioTeq’s Code of Business Conduct and Ethics.
+                      </p>
+                     
+                </div>
+               
+                <div style="padding: 50px;padding-top:10px">
+                    <h2 style="padding-bottom: 10px;" id="Services_and_areas">
+                        6. Services and areas of expertise
+                    </h2>
+                    <p class="subParagraph"> ScioTeq organization is equipped to deliver multiple core services:</p>
+                    <div>
+                        <h3 class="subHeading" id="Services_and_areas_Sub_Point_1">
+                            6.1<span class="tab">Conforming to your environment</span>
+                        </h3>
+                        <p class="subParagraph">
+                            ScioTeq PMO mission is to help you during the project lifecycle with dedicated specialized resources and
+                            expertise to deliver and/or implement ScioTeq state of the art solution in the most effective way. A Fixed
+                            cost for a guaranteed result.
+                        </p>
+                         <h3 class="subHeading" id="Services_and_areas_Sub_Point_2">
+                            6.2<span class="tab">Technical Pre-sales</span>
+                        </h3>
+                        <p class="subParagraph">
+                            ScioTeq Pre-sales team will fill the gap between the business and technical needs and will map the
+                            different requirements with the main goal to create a technical solution design in line with your business
+                            and/or program strategy.
+                        </p>
+                         <h3 class="subHeading" id="Services_and_areas_Sub_Point_3">
+                            6.3<span class="tab">Training Services</span>
+                        </h3>
+                        <p class="subParagraph">
+                            ScioTeq Product Specialist team can provide product training to customers or Integration Partners so that
+							these can develop ScioTeq independent expertise in-house.
+                        </p>
+                         <h3 class="subHeading" id="Services_and_areas_Sub_Point_4">
+                            6.4<span class="tab">Integration / Implementation services</span>
+                        </h3>
+                        <p class="subParagraph">
+                            ScioTeq Service team can provide installation and/or implementation and/or configuration services
+                            remote or at your premises. This dedicated service will allow your engineers to integrate ScioTeq products
+                            most efficiently and make proper use of all features and benefits.
+                        </p>
+                         <h3 class="subHeading" id="Services_and_areas_Sub_Point_5">
+                            6.5<span class="tab">Technical Support</span>
+                        </h3>
+                        <p class="subParagraph">
+                            ScioTeq Support team can deliver Technical Support and repair services either at your premises, at end
+                            user premises or elsewhere in the field. 
+                        </p>
+                         <p class="subParagraph">
+                            Our main service center is located in Kortrijk (Belgium) and offers a worldwide service platform, including
+							local support centers in France, Israel, Singapore, India and the United states.
+                        </p>
+                        <h2 style="padding-bottom: 10px;padding-top:20px" id="Factory_Acceptance">
+                            7. Factory Acceptance Test
+                        </h2>
+                        <p class="subParagraph"> ScioTeq holds valid ISO 9001 and ISO 9100 certificates for the design, manufacturing, repair and
+                            distribution of its product portfolio. Each product can be delivered with a standard FAT document. A
+                            customized or extended FAT document based on additional parameter testing can be organized and used
+                            during the production flow. ScioTeq will assist the customer QA department to work out the document,
+                            which has to be finalized prior the manufacturing phase.
+                        </p>
+                        <p class="subParagraph" style="page-break-after:always;">
+                            Customer attendance to FAI/FAT can be catered for upon request.
+                        </p>
+                        
+                    </div>
+                </div>
+                <!--PAGE 9-->
+                <div style="padding: 50px;padding-top:10px;padding-bottom:10px">
+                    <h2 style="padding-bottom: 10px;" id="Services_Documentation">
+                        8. Service Documentation
+                    </h2>
+                    <p class="subParagraph">
+                        For the proposed products (exact quantity to be determined between ScioTeq and the customer), ScioTeq
+                        can provide service manuals in English language consisting of:
+                    </p>
+                    <p class="subParagraph">
+                        - Product description,<br/>
+                        - Set-up,<br/>
+                        - Diagram descriptions,<br/>
+                        - Fault isolation to board level and repair,<br/>
+                        - Disassembly of major parts,<br/>
+                        - Adjustment procedures.
+                    </p>
+                    <h2 style="padding-bottom: 10px;" id="ContactDetail">
+                        9. Contact Details
+                    </h2>
+                    <div>
+                        <h3 class="subHeading" id="ContactDetail_Sub_Point_1">
+                            9.1<span class="tab">Commercial Contacts</span>
+                        </h3>
+                        <div class="tabWithSpace">
+                            <table id="Table">
+                            <tr>
+                                <td class="blueOutlineTable">Name</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__SalesRep__r.name}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Function</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__SalesRep__r.Title}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Email</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__SalesRep__r.Email}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Office Phone</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__SalesRep__r.Phone}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Mobile Phone </td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__SalesRep__r.MobilePhone}</td>
+                            </tr>
+                        </table>
+                        </div>
+                        
+                        
+                         <h3 class="subHeading" id="ContactDetail_Sub_Point_2">
+                            9.2<span class="tab">Technical Contacts</span>
+                        </h3>
+                         <div class="tabWithSpace">
+                            <table id="Table">
+                            <tr>
+                                <td class="blueOutlineTable">Name</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Name}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Function</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Title}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Email</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Email}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Office Phone</td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.Phone}</td>
+                            </tr>
+                           <tr>
+                                <td class="blueOutlineTable">Mobile Phone </td>
+                                <td class="blueOutlineTable">{!SBQQ__Quote__c.SBQQ__PrimaryContact__r.MobilePhone}</td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                     <h2 style="padding-bottom: 10px;padding-top:10px" id="ReceiptOf_Order">
+                        10. Receipt of Order
+                    </h2>
+                    <div>
+                        <h3 class="subHeading" id="ReceiptOf_Order_Sub_Point_1">
+                            10.1<span class="tab">Order Address</span>
+                        </h3>
+                        <p class="subParagraph" style="padding-top:10px">
+                            ScioTeq BV<br/>
+                            Sales Desk<br/>
+                            President Kennedypark 35A<br/>
+                            8500 Kortrijk, Belgium<br/>
+                            e-mail: <a href="" >be.salesdesk@scioteq.com</a> and <a href="" >be.contracts@scioteq.com</a><br/>
+                        </p>
+                        <p class="subParagraph" style="padding-top:10px">
+                            For best practice and accelerated order processing, please make sure that the purchase order clearly
+                            states the following information:
+                        </p>
+                        <p class="subParagraph" style="padding-top:10px">
+                            In case new information on the commercial as well as on the technical items is required, please contact us again.
+                        </p>
+                        <h3 class="subHeading" id="ReceiptOf_Order_Sub_Point_2">
+                            10.2<span class="tab">Acceptance of Order</span>
+                        </h3>
+                        <p class="subParagraph" style="padding-top:10px">
+                            A purchase order is processed when ScioTeq is in receipt of: <br/>
+                            - <span class="space">the purchase order;</span><br/>
+                            - <span class="space">signed Product Definition Checklist;</span><br/>
+                            - <span class="space">End User Statement if applicable.</span><br/>
+                        </p>
+                        <p class="subParagraph" style="padding-top:10px">
+                            A purchase order is confirmed when ScioTeq provides an Order Confirmation in response to the customer purchase order.
+                        </p>
+                        <p class="subParagraph" style="padding-top:10px;page-break-after:always;">
+                            This commercial proposal is subject to agreement on terms and conditions of sale and the approval of export license 
+                            from the relevant authorities, if applicable.
+                        </p>
+                    </div>
+                </div>
+                
+                <!--PAGE 10-->
+                <div style="padding: 50px;padding-top:10px;padding-bottom:10px" >
+                    <p class="subParagraph">End of Document</p>
+                      <table id="Table">
+                          <tr>
+                              <td class="shrink border">- Purchase order number</td>
+                              <td class="expand border">- Mode of payment</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- A reference to this commercial
+                                  proposal
+                              </td>
+                              <td class="expand border">- Payment term</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- ScioTeq part number</td>
+                              <td class="expand border">- Price</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- Invoicing address</td>
+                              <td class="expand border">- Incoterms + place of delivery</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- Delivery address</td>
+                              <td class="expand border">- VAT number</td>
+                          </tr>
+                           <tr>
+                              <td class="shrink border">- Requested delivery time/schedule</td>
+                              <td class="expand border">- Contact name and details</td>
+                          </tr>
+                    </table>
+                    
+                    <p class="subParagraph">For best practice and accelerated good incoming process, the ScioTeq delivery notes will clearly state the
+                        following information:</p>
+                    <table id="Table">
+                          <tr>
+                              <td class="shrink border">- Purchase order number</td>
+                              <td class="expand border">- Agreed Incoterms</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- ScioTeq part number</td>
+                              <td class="expand border">- Payment term</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- Serial numbers of delivered goods </td>
+                              <td class="expand border">- Price</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- Invoicing address</td>
+                              <td class="expand border">- Shipment mode</td>
+                          </tr>
+                          <tr>
+                              <td class="shrink border">- Delivery address</td>
+                              <td class="expand border">- VAT number</td>
+                          </tr>
+                           <tr>
+                              <td class="shrink border">- Weight (gross and net) </td>
+                              <td class="expand border">- Contact name and details</td>
+                          </tr>
+                    </table>
+                </div>
+                
+            </div> 
+        </apex:pageBlockSection>    
+    </apex:pageBlock>
+    
+    <div class="footer">
+        <div style="width: 100%; margin-bottom: 30px;">
+            <div class="footerLeftSide">
+                <img style="height: 35px;" src="/resource/QuotePDFImages/FooterLogo.PNG" />
+            </div>
+            <div class="footerCenter">
+                <p class="topPadding">ScioTeq-ADS_QUO ref_Cust_CC.Prog_YYYYMMDD</p>
+            </div> 
+            <div class="footerRightSide">
+                <p class="topPadding">Page<span class="pagenumber"/> of <span class="pagecount"/></p>
+            </div>
+        </div> 
+        <div>
+            <hr class="footerLine" />
+        </div>    
+    </div>
+</apex:page>

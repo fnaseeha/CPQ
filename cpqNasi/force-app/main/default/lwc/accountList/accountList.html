@@ -1,0 +1,21 @@
+<template>
+    <lightning-card>
+        <template if:true={data}>
+        <lightning-datatable
+            key-field="Id"
+            data={data}
+            columns={columns}
+        >
+        </lightning-datatable>
+        </template>
+
+        <template if:false={data}>
+            <c-lwc-messaging-utility illustration-name="desert"
+                message-title="Account Not Found"
+                message-body="You should create one!"
+                max-width="100"
+                show-message="true">
+            </c-lwc-messaging-utility>
+           </template
+    </lightning-card>
+</template>

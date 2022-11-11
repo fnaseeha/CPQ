@@ -1,0 +1,49 @@
+{
+   "@odata.context":"https://graph.microsoft.com/v1.0/$metadata#drives('b%211xXAgAPLj0OWjK2SVk4sPmmJzr_hs45IvkNlF9xcX7vGzsgVQtQ6RphWmXYCXfxu')/items/$entity",
+   "@microsoft.graph.downloadUrl":"https://upcbe1013956-my.sharepoint.com/personal/gauthier_vandaele_mobio_be/_layouts/15/download.aspx?UniqueId=4b26f8b8-4fbe-49c1-a3dc-560cf4ff199c&Translate=false&tempauth=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvdXBjYmUxMDEzOTU2LW15LnNoYXJlcG9pbnQuY29tQGVlZDUyYjhhLTAyNzYtNGI5Ny1iYTM0LTU3MGFmMTgxYjNkNiIsImlzcyI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMCIsIm5iZiI6IjE2NjQ0Mjc2MjMiLCJleHAiOiIxNjY0NDMxMjIzIiwiZW5kcG9pbnR1cmwiOiJpWEFJSXNvbTdZNDdVT3hTTTMvNjFVeENoV1ljVHFYRjdBaHhwdEdjNWZzPSIsImVuZHBvaW50dXJsTGVuZ3RoIjoiMTYyIiwiaXNsb29wYmFjayI6IlRydWUiLCJjaWQiOiJNbUZrWVdRME5HRXRPR0ZsTlMwMFl6RTNMV0kyTmpBdFlqZzNaVEZrWTJJNFpUSXoiLCJ2ZXIiOiJoYXNoZWRwcm9vZnRva2VuIiwic2l0ZWlkIjoiT0RCak1ERTFaRGN0WTJJd015MDBNemhtTFRrMk9HTXRZV1E1TWpVMk5HVXlZek5sIiwiYXBwX2Rpc3BsYXluYW1lIjoiaW52b2ljZUFwcCIsIm5hbWVpZCI6IjY0MGE1NTFhLTJhZTgtNDY1ZC04NmM0LWYxMzQ4YTI2ZTM4ZUBlZWQ1MmI4YS0wMjc2LTRiOTctYmEzNC01NzBhZjE4MWIzZDYiLCJyb2xlcyI6ImFsbHNpdGVzLndyaXRlIGFsbGZpbGVzLndyaXRlIiwidHQiOiIxIiwidXNlUGVyc2lzdGVudENvb2tpZSI6bnVsbCwiaXBhZGRyIjoiMjAuMTkwLjE5MC4xMDEifQ.L2lkKy9XNWxpT0o4VVdrZzlhQitFbzB4UFlLUFFwRHNXVmV6U0oyZ3Q5az0&ApiVersion=2.0",
+   "createdDateTime":"2022-09-29T05:00:23Z",
+   "eTag":"\"{4B26F8B8-4FBE-49C1-A3DC-560CF4FF199C},1\"",
+   "id":"0152JM2SFY7ATEXPSPYFE2HXCWBT2P6GM4",
+   "lastModifiedDateTime":"2022-09-29T05:00:23Z",
+   "name":"9876587 - Test Gauthier.pdf",
+   "webUrl":"https://upcbe1013956-my.sharepoint.com/personal/gauthier_vandaele_mobio_be/Documents/Mobio%20Team%20Folder/Mobio/Invoices/2022%20invoices/9876587%20-%20Test%20Gauthier.pdf",
+   "cTag":"\"c:{4B26F8B8-4FBE-49C1-A3DC-560CF4FF199C},1\"",
+   "size":81361,
+   "createdBy":{
+      "application":{
+         "id":"640a551a-2ae8-465d-86c4-f1348a26e38e",
+         "displayName":"invoiceApp"
+      },
+      "user":{
+         "displayName":"SharePoint App"
+      }
+   },
+   "lastModifiedBy":{
+      "application":{
+         "id":"640a551a-2ae8-465d-86c4-f1348a26e38e",
+         "displayName":"invoiceApp"
+      },
+      "user":{
+         "displayName":"SharePoint App"
+      }
+   },
+   "parentReference":{
+      "driveType":"business",
+      "driveId":"b!1xXAgAPLj0OWjK2SVk4sPmmJzr_hs45IvkNlF9xcX7vGzsgVQtQ6RphWmXYCXfxu",
+      "id":"0152JM2SFQFQAZIS5OINHY5LFCWV3E27TP",
+      "path":"/drives/b!1xXAgAPLj0OWjK2SVk4sPmmJzr_hs45IvkNlF9xcX7vGzsgVQtQ6RphWmXYCXfxu/root:/Mobio Team Folder/Mobio/Invoices/2022 invoices"
+   },
+   "file":{
+      "mimeType":"application/pdf",
+      "hashes":{
+         "quickXorHash":"Nhg3w3f8G/HMt5+Ctv2xvo+JTi4="
+      }
+   },
+   "fileSystemInfo":{
+      "createdDateTime":"2022-09-29T05:00:23Z",
+      "lastModifiedDateTime":"2022-09-29T05:00:23Z"
+   },
+   "shared":{
+      "scope":"users"
+   }
+}
